@@ -29,7 +29,7 @@ function EditBlog() {
         const fetchBlog = async () => {
             try {
                 const response = await fetch(
-                    `http://localhost:4000/blogs/getBlog/${id}`
+                    `${process.env.REACT_APP_API_URL}/blogs/getBlog/${id}`
                 );
                 const data = await response.json();
 
@@ -57,7 +57,7 @@ function EditBlog() {
         e.preventDefault();
         try {
             const response = await fetch(
-                `http://localhost:4000/blogs/updateBlog/${id}`,
+                `${process.env.REACT_APP_API_URL}/blogs/updateBlog/${id}`,
                 {
                     method: "PUT",
                     headers: {

@@ -28,7 +28,7 @@ export default function CreateBlog() {
         e.preventDefault();
         try {
             const response = await fetch(
-                "http://localhost:4000/blogs/createBlog",
+                `${process.env.REACT_APP_API_URL}/blogs/createBlog`,
                 {
                     method: "POST",
                     headers: {

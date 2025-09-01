@@ -29,7 +29,9 @@ export default function Dashboard() {
     useEffect(() => {
         const fetchBlogs = async () => {
             try {
-                const res = await fetch("http://localhost:4000/blogs/getBlogs");
+                const res = await fetch(
+                    `${process.env.REACT_APP_API_URL}/blogs/getBlogs`
+                );
                 const data = await res.json();
                 setBlogs(data);
 
@@ -68,7 +70,7 @@ export default function Dashboard() {
         if (confirm.isConfirmed) {
             try {
                 const res = await fetch(
-                    `http://localhost:4000/blogs/deleteBlog/${id}`,
+                    `${process.env.REACT_APP_API_URL}/blogs/deleteBlog/${id}`,
                     {
                         method: "DELETE",
                         headers: {

@@ -5,7 +5,7 @@ function Home() {
     const [blogs, setBlogs] = useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:4000/blogs/getBlogs")
+        fetch(`${process.env.REACT_APP_API_URL}/blogs/getBlogs`)
             .then((res) => res.json())
             .then((data) => setBlogs(data))
             .catch((err) => console.error(err));

@@ -22,7 +22,7 @@ export default function BlogDetail() {
     const fetchBlog = async () => {
         try {
             const res = await fetch(
-                `http://localhost:4000/blogs/getBlog/${id}`
+                `${process.env.REACT_APP_API_URL}/blogs/getBlog/${id}`
             );
             if (!res.ok) throw new Error("Failed to fetch blog");
             const data = await res.json();
@@ -36,7 +36,7 @@ export default function BlogDetail() {
     const fetchComments = async () => {
         try {
             const res = await fetch(
-                `http://localhost:4000/comments/getComments/${id}`
+                `${process.env.REACT_APP_API_URL}/comments/getComments/${id}`
             );
             if (!res.ok) throw new Error("Failed to fetch comments");
             const data = await res.json();
@@ -53,7 +53,7 @@ export default function BlogDetail() {
 
         try {
             const res = await fetch(
-                `http://localhost:4000/comments/addComment`,
+                `${process.env.REACT_APP_API_URL}/comments/addComment`,
                 {
                     method: "POST",
                     headers: {
@@ -100,7 +100,7 @@ export default function BlogDetail() {
         if (result.isConfirmed) {
             try {
                 const res = await fetch(
-                    `http://localhost:4000/blogs/deleteBlog/${blog._id}`,
+                    `${process.env.REACT_APP_API_URL}/blogs/deleteBlog/${blog._id}`,
                     {
                         method: "DELETE",
                         headers: { Authorization: `Bearer ${token}` },
@@ -137,7 +137,7 @@ export default function BlogDetail() {
         if (result.isConfirmed) {
             try {
                 const res = await fetch(
-                    `http://localhost:4000/comments/deleteComment/${commentId}`,
+                    `${process.env.REACT_APP_API_URL}/comments/deleteComment/${commentId}`,
                     {
                         method: "DELETE",
                         headers: { Authorization: `Bearer ${token}` },
