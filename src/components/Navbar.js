@@ -34,7 +34,7 @@ function Navbar() {
         <nav className="navbar navbar-expand-lg transparent-navbar">
             <div className="container">
                 <NavLink to="/" className="navbar-brand">
-                    ✒️ Ink
+                    ✒️ Pluma
                 </NavLink>
 
                 <button
