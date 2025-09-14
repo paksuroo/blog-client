@@ -1,10 +1,30 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 function Navbar() {
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem("user"));
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const menuRef = useRef(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+                menuRef.current &&
+                !menuRef.current.contains(event.target) &&
+                !event.target.classList.contains("navbar-toggler") &&
+                !event.target.closest(".navbar-toggler")
+            ) {
+                setIsMenuOpen(false);
+            }
+        };
+
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, []);
 
     const handleLogout = async () => {
         const result = await Swal.fire({
@@ -30,8 +50,15 @@ function Navbar() {
         }
     };
 
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
+    };
+
     return (
-        <nav className="navbar navbar-expand-lg transparent-navbar">
+        <nav
+            className="navbar navbar-expand-lg transparent-navbar"
+            ref={menuRef}
+        >
             <div className="container">
                 <NavLink to="/" className="navbar-brand">
                     ✒️ Pluma
@@ -40,13 +67,18 @@ function Navbar() {
                 <button
                     className="navbar-toggler"
                     type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
+                    onClick={toggleMenu}
+                    aria-label="Toggle navigation"
                 >
                     <span className="navbar-toggler-icon"></span>
                 </button>
 
-                <div className="collapse navbar-collapse" id="navbarNav">
+                <div
+                    className={`collapse navbar-collapse ${
+                        isMenuOpen ? "show" : ""
+                    }`}
+                    id="navbarNav"
+                >
                     <ul className="navbar-nav ms-auto align-items-lg-center">
                         {user ? (
                             <>
@@ -64,6 +96,7 @@ function Navbar() {
                                                 ? "nav-link current-page"
                                                 : "nav-link"
                                         }
+                                        onClick={() => setIsMenuOpen(false)}
                                     >
                                         Create
                                     </NavLink>
@@ -78,6 +111,7 @@ function Navbar() {
                                                     ? "nav-link current-page"
                                                     : "nav-link"
                                             }
+                                            onClick={() => setIsMenuOpen(false)}
                                         >
                                             📊 Dashboard
                                         </NavLink>
@@ -103,6 +137,7 @@ function Navbar() {
                                                 ? "nav-link current-page"
                                                 : "nav-link"
                                         }
+                                        onClick={() => setIsMenuOpen(false)}
                                     >
                                         Login
                                     </NavLink>
@@ -116,6 +151,7 @@ function Navbar() {
                                                 ? "nav-link current-page"
                                                 : "nav-link"
                                         }
+                                        onClick={() => setIsMenuOpen(false)}
                                     >
                                         Register
                                     </NavLink>

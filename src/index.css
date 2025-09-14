@@ -548,3 +548,110 @@ body.dashboard-background {
         padding: 1.5rem;
     }
 }
+
+/* Mobile menu styles */
+@media (max-width: 992px) {
+    .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        padding: 1rem;
+        border-radius: 0 0 10px 10px;
+        margin-top: 0.5rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .mobile-menu-background {
+        background: rgba(0, 0, 0, 0.7);
+        border-radius: 8px;
+        padding: 1rem;
+    }
+
+    .navbar-nav {
+        text-align: center;
+    }
+
+    .nav-item {
+        margin: 0.8rem 0;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-item:last-child {
+        border-bottom: none;
+    }
+
+    /* Ensure the menu stays visible when toggled */
+    .navbar-collapse.show {
+        display: block !important;
+        animation: slideDown 0.3s ease-out;
+    }
+
+    .navbar-toggler {
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 0.25rem 0.5rem;
+    }
+
+    .navbar-toggler:focus {
+        box-shadow: 0 0 0 2px rgba(255, 204, 0, 0.5);
+    }
+
+    /* Username styling in mobile */
+    .username {
+        color: #ffcc00 !important;
+        font-weight: 600;
+        text-align: center;
+        display: block;
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+        background: rgba(255, 204, 0, 0.1);
+        border-radius: 6px;
+    }
+
+    /* Logout button styling in mobile */
+    .btn-logout {
+        width: 100%;
+        margin-top: 1rem;
+        background: rgba(255, 77, 77, 0.2) !important;
+        border: 1px solid rgba(255, 77, 77, 0.5) !important;
+    }
+
+    .btn-logout:hover {
+        background: rgba(255, 77, 77, 0.3) !important;
+        border: 1px solid rgba(255, 77, 77, 0.7) !important;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Make navbar items more visible on all screens */
+.navbar-nav .nav-link {
+    padding: 0.5rem 1rem;
+    margin: 0.2rem 0;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.navbar-nav .nav-link:hover {
+    background: rgba(255, 204, 0, 0.15);
+}
+
+.navbar-nav .current-page {
+    background: rgba(255, 204, 0, 0.2);
+    color: #ffcc00 !important;
+}
